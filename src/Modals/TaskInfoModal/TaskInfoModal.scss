@@ -1,0 +1,19 @@
+.commentOpened {
+    display: block;
+}
+
+.commentClosed {
+    display: none;
+}
+
+.buttons {
+    button {
+        margin: 5px;
+    }
+}
+
+.taskText {
+    border-radius: 5px;
+    outline: 1px solid grey;
+    padding: 10px;
+}

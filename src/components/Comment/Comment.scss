@@ -1,0 +1,62 @@
+.comment-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    outline: 1px solid grey;
+    margin: 10px 0;
+    padding: 3px 10px;
+    
+    p {
+        margin: 3px 0;
+    }
+}
+
+.avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    color: white;
+    background-color: grey;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+
+    p {
+        margin: auto;
+        font-size: 1.8rem;
+    }
+}
+
+.comment-author {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(16, 64, 128);
+}
+
+.comment-other {
+    display: flex;
+
+    p {
+        margin-right: 10px;;
+    }
+}
+
+.comment-action {
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: darkblue;
+    cursor: pointer;
+}
+
+.comment-date {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+.comment-input {
+    button {
+        margin: 3px;
+    }
+}
