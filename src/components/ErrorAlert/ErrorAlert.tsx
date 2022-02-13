@@ -1,6 +1,8 @@
+// redux
 import { removeAlert } from '../../redux/slices/errorAlertSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStateType, AppDispatchType } from '../../redux/reduxTypes';
+// other
 import { Alert } from 'reactstrap';
 import './ErrorAlert.scss';
 

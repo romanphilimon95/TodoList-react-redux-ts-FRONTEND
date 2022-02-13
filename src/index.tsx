@@ -7,6 +7,12 @@ import App from './components/App/App';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
+// I know that it would be better to store server url in .env file, but
+// in this case you won't be able to see this application fast way. 
+// So I wrote the url right here
+
+export const ServerUrl = 'http://localhost:8000';
+
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>

@@ -1,9 +1,13 @@
 import { useState } from 'react';
+// icons
 import { BsFillPencilFill, BsTrashFill } from "react-icons/bs";
+// components
 import TaskInfoModal from '../../Modals/TaskInfoModal/TaskInfoModal';
 import DeleteTaskModal from '../../Modals/DeleteTaskModal/DeleteTaskModal';
 import UpdateTaskModal from '../../Modals/UpdateTaskModal/UpdateTaskModal';
-import { TaskInterface } from '../../redux/reduxTypes';
+// typescript stuff
+import { TaskInterface } from '../MainPage/MainPageTypesAndInterfaces';
+//other
 import './Task.scss';
 
 const Task = ({ task }: { task: TaskInterface }) => {

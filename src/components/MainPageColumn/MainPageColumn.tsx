@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from 'reactstrap';
 import Task from '../Task/Task';
 // types and interfaces
-import { TaskInterface } from '../../redux/reduxTypes';
+import { TaskInterface } from '../MainPage/MainPageTypesAndInterfaces';
 import { MainPageColumnPropsType } from './MainPageColumnTypesAndInterfaces';
 // other
 import { Draggable, Droppable } from 'react-beautiful-dnd';

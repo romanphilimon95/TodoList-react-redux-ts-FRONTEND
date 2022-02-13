@@ -5,7 +5,7 @@ import {
   Redirect
 } from 'react-router-dom';
 // redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // components
 import ErrorAlert from '../ErrorAlert/ErrorAlert';
 import SigninPage from '../SignInPage/SigninPage';
@@ -16,7 +16,11 @@ import { RootStateType } from '../../redux/reduxTypes';
 // other
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import './App.css';
+import { ServerUrl } from '../..';
+import { denyAccess } from '../../redux/slices/isAuthSlice';
+
 //declarations
+
 declare module 'axios' {
   export interface AxiosRequestConfig {
     credentials: string;
@@ -41,7 +45,7 @@ axios.interceptors.response.use(
 
     if (err.response.status === 401) {
       try {
-        const url: string = `${process.env.REACT_APP_SERVER_URL}/refreshToken`;
+        const url: string = `${ServerUrl}/refreshToken`;
         const response: AxiosResponse<RefreshTokenResponseType, unknown> = await axios
           .get<RefreshTokenResponseType, AxiosResponse>(url, {
             withCredentials: true,
@@ -53,11 +57,11 @@ axios.interceptors.response.use(
 
         return axios.request<AxiosRequestConfig<string>>(err.config);
       } catch (e) {
-        console.log('not authorized');
+        console.log('not auth');
       }
     } 
-    
-    throw err;
+
+    return axios.request<AxiosRequestConfig<string>>(err.config);
   }
 );
 
@@ -79,7 +83,7 @@ const App = () => {
             ? <Route path='/mainPage'>
                 <MainPage />
               </Route>
-            : <Redirect to="/signInPage" />
+            : <Redirect to="/signinPage" />
         }
         <Redirect from='/' to='/mainPage'></Redirect>
       </Switch>

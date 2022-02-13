@@ -1,11 +1,16 @@
 import { useState } from 'react';
+// components
 import { Input, Button } from 'reactstrap';
+// redux
 import { useDispatch } from 'react-redux';
 import { setAlert } from '../../redux/slices/errorAlertSlice';
+// typescript stuff
 import { CommentInterface } from '../../Modals/TaskInfoModal/TaskInfoModalTypesAndInterfaces';
 import { CommentPropsType } from './CommentTypesAndInterfaces';
+// other
 import axios from 'axios';
 import './Comment.scss';
+import { ServerUrl } from '../..';
 
 const Comment = ({
     setAllComments,
@@ -24,7 +29,7 @@ const Comment = ({
     const dispatch = useDispatch();
 
     const deleteComment = async (): Promise<void> => {
-        const url: string = `${process.env.REACT_APP_SERVER_URL}/deleteComment?_id=${_id}`;
+        const url: string = `${ServerUrl}/deleteComment?_id=${_id}`;
 
         await axios.delete(url)
             .then(() => {
@@ -42,7 +47,7 @@ const Comment = ({
     }
 
     const changeCommentText = async (): Promise<void> => {
-        const url: string = `${process.env.REACT_APP_SERVER_URL}/changeCommentText`;
+        const url: string = `${ServerUrl}/changeCommentText`;
 
         await axios.patch<CommentInterface>(url, {
             commentText: text,

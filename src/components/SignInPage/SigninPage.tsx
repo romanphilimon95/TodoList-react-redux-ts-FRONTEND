@@ -16,6 +16,7 @@ import { LoginPasswordInterface, token } from './SignInTypesAnsInterfaces';
 import { useHistory } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import './SigninPage.scss';
+import { ServerUrl } from '../..';
 
 const SigninPage = () => {
   const dispatch: AppDispatchType = useDispatch();
@@ -85,7 +86,7 @@ const SigninPage = () => {
       }));
       return;
     }
-    const url: string = `${process.env.REACT_APP_SERVER_URL}/createNewUser`;
+    const url: string = `${ServerUrl}/createNewUser`;
 
     await axios.post<LoginPasswordInterface, AxiosResponse<token>>(url, {
       password,
@@ -145,7 +146,7 @@ const SigninPage = () => {
       }));
       return;
     }
-    const url: string = `${process.env.REACT_APP_SERVER_URL}/authorise`;
+    const url: string = `${ServerUrl}/authorise`;
 
     await axios.post<LoginPasswordInterface, AxiosResponse<token>>(url, {
       login,

@@ -22,6 +22,7 @@ import {
 import { DragDropContext } from 'react-beautiful-dnd';
 import axios from 'axios';
 import './MainPage.scss';
+import { ServerUrl } from '../..';
 
 const MainPage = () => {
     const [isAddModalOpened, setIsAddModalOpened] = useState<boolean>(false);
@@ -77,7 +78,7 @@ const MainPage = () => {
 
     const logout = async (): Promise<void> => {
         try {
-            const url: string = `${process.env.REACT_APP_SERVER_URL}/logout`;
+            const url: string = `${ServerUrl}/logout`;
             await axios.get<never, never>(url,
                 {
                     withCredentials: true,

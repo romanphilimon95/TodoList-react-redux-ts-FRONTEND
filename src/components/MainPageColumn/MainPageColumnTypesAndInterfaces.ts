@@ -1,4 +1,4 @@
-import { TaskInterface } from "../../redux/reduxTypes"
+import { TaskInterface } from '../MainPage/MainPageTypesAndInterfaces'
 
 export type MainPageColumnPropsType = {
     columnId: string;

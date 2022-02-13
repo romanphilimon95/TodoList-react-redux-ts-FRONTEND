@@ -19,6 +19,7 @@ import {
  // other
 import axios, { AxiosResponse } from 'axios';
 import './TaskInfoModal.scss';
+import { ServerUrl } from '../..';
 
 const TaskInfoModal = ({
   setIsTaskInfoModalOpened,
@@ -32,7 +33,7 @@ const TaskInfoModal = ({
 
   useEffect((): void => {
     const getComments = async (): Promise<void> => {
-      const url: string = `${process.env.REACT_APP_SERVER_URL}/getTaskComments?taskId=${_id}`;
+      const url: string = `${ServerUrl}/getTaskComments?taskId=${_id}`;
       await axios.get<CommentInterface[]>(url)
         .then(result => {
           setAllComments(result.data);
@@ -50,7 +51,7 @@ const TaskInfoModal = ({
       const getDate = (date: Date): string => {
         return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
       }
-      const url: string = `${process.env.REACT_APP_SERVER_URL}/addComment`;
+      const url: string = `${ServerUrl}/addComment`;
 
       await axios
         .post<PostCommentInterface, AxiosResponse<CommentInterface>>(url, {

@@ -2,16 +2,22 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TaskStateType } from '../reduxTypes';
 import axios, { AxiosResponse } from 'axios';
 import { TaskInterface } from '../../components/MainPage/MainPageTypesAndInterfaces';
+import { ServerUrl } from '../..';
 
 export const fetchInitialTasks = createAsyncThunk(
   'tasks/fetchInitialTasks',
   async () => {
-    const response: AxiosResponse<TaskInterface[]> = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getAllTasks`,
-      {
-        withCredentials: true,
-        credentials: 'include'
-      });
-    return response.data;
+    try {
+      const response: AxiosResponse<TaskInterface[]> = await axios.get(`${ServerUrl}/getAllTasks`,
+        {
+          withCredentials: true,
+          credentials: 'include'
+        });
+      return response.data;
+    } catch(e) {
+      console.log(e)
+    }
+    
   }
 );
 
@@ -22,7 +28,7 @@ export const addTaskMiddleware = createAsyncThunk(
     taskText: string;
     stage: number;
   }) => {
-    const response: AxiosResponse<TaskInterface> = await axios.post(`${process.env.REACT_APP_SERVER_URL}/createNewTask`,
+    const response: AxiosResponse<TaskInterface> = await axios.post(`${ServerUrl}/createNewTask`,
       {
         taskText,
         taskName,
@@ -43,7 +49,7 @@ export const updateTaskMiddleware = createAsyncThunk(
     taskText: string,
     _id: string
   }) => {
-    await axios.patch(`${process.env.REACT_APP_SERVER_URL}/updateTask`,
+    await axios.patch(`${ServerUrl}/updateTask`,
       {
         taskText,
         _id
@@ -59,7 +65,7 @@ export const updateStageMiddleware = createAsyncThunk(
     stage: number,
     _id: string
   }) => {
-    await axios.patch(`${process.env.REACT_APP_SERVER_URL}/changeTaskStage`,
+    await axios.patch(`${ServerUrl}/changeTaskStage`,
       {
         stage,
         _id
@@ -72,7 +78,7 @@ export const updateStageMiddleware = createAsyncThunk(
 export const deleteTaskMiddleware = createAsyncThunk(
   'task/deleteTaskMiddleware',
   async (_id: string) => {
-    await axios.delete(`${process.env.REACT_APP_SERVER_URL}/deleteTask?_id=${_id}`)
+    await axios.delete(`${ServerUrl}/deleteTask?_id=${_id}`)
 
     return _id;
   }
